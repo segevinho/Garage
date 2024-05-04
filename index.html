@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car Sales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Welcome to BIM-BA Garage</h1>
+    </header>
+
+    <div id="display"></div>
+
+    <div class="input-field">
+        <h3>Choose a car:</h3>
+
+        <label for="CName">Name:</label><br>
+        <input id="CName" type="text"><br>
+        <label for="carMakes">Car:</label><br>
+        <input id="carMakes" type="text"><br>
+        <label for="carModel">Model:</label><br>
+        <input id="carModel" type="text"><br>
+        <label for="carColor">Color:</label><br>
+        <input id="carColor" type="text"><br>
+        <button onclick="save()">Save</button>
+    </div>
+
+
+    <div class="container">
+        <div class="car">
+            <h2>JAGUAR F-TYPE 2024</h2>
+            <img src="https://th.bing.com/th/id/OIP.0rkm4uLEiSEUpzWCL1stLgHaFj?rs=1&pid=ImgDetMain" width="500">
+            <p>575 horsepower, 0-60 in 3.5 seconds, and a top speed of 200 mph, the F-Type SVR is the new king of the
+                Jaguar lineup.</p>
+            <p>Price: $116,275</p>
+            <p> <label for="color1">Choose a color:</label>
+                <select name="color" id="color1">
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="green">Green</option>
+                </select>
+            </p>
+
+        </div>
+        <div class="car">
+            <h2> Audi R8 Spyder 2024</h2>
+            <img src="https://i.ytimg.com/vi/_ibVnQZiado/maxresdefault.jpg" width="500">
+            <p>It’s the Audi R8 supercar with a soft-top roof. And if you’re now braced for all the usual complaints
+                about super-spiders (or indeed spyders) being heavier, floppier and less precise than a hard-top
+                supercar then… stay tuned. We’ll get to the truth in that in a bit. But let’s not take this R8 too
+                seriously because this car is mainly about one thing: NOISE.</p>
+            <p>Price: $162,395</p>
+            <p><label for="color2">Choose a color:</label>
+                <select name="color" id="color2">
+                    <option value="black">Black</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                </select>
+            </p>
+
+        </div>
+        <div class="car">
+            <h2>Ford Mustang Cobra 1970 </h2>
+            <img src="https://www.chicagomotorcars.com/imagetag/5480/main/l/Used-1970-Ford-Mustang-Mach-1-428ci-Cobra-Jet-ONE-OF-ONE--s-Matching.jpg"
+                width="500">
+            <p>The 1970 Mustang Cobra available with the powerful 428 cubic inch V-8 engine (7.0 liters) and 335
+                horsepower.</p>
+            <p>Price: $65,995</p>
+            <p>
+                <label for="color3">Choose a color:</label>
+                <select name="color" id="color3">
+                    <option value="black">Black</option>
+                </select>
+            </p>
+
+        </div>
+        <div class="car">
+            <h2>1962 Israeli classic Susita
+            </h2>
+            <img src="https://i.pinimg.com/originals/3c/cd/20/3ccd20b67ff6ceb6ae63220cae696d1c.jpg" width="500">
+            <p>Nothing to tell about this magnificent and unique Israeli car</p>
+            <p>Price: $99,999</p>
+            <p>
+                <label for="color4">Choose a color:</label>
+                <select name="color" id="color4">
+                    <option value="white">White & Light Blue</option>
+                </select>
+            </p>
+
+        </div>
+        <div class="car">
+            <h2>Mercedes Benz Brabus G700 2019
+            </h2>
+            <img src="https://i.ytimg.com/vi/1-UAMh85dmA/maxresdefault.jpg" width="500">
+            <p> Ultimativer High Performance Off Roader. 700 horsepower, a top speed of 240 km/h.
+                Reaches 0-100 km/h (62mph) in 4,3 seconds a spectacular widebody version.
+                23-inch hi-tech forged wheels and exclusive interior design in top quality.
+            </p>
+            <p>Price: $397,500</p>
+            <p>
+                <label for="color5">Choose a color:</label>
+                <select name="color" id="color5">
+                    <option value="orange">Orange</option>
+                    <option value="white">Black</option>
+                    <option value="green">Yellow</option>
+                </select>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let customers = JSON.parse(localStorage.getItem("customers")) || [];
+
+        function display() {
+            let temp = "<ol>";
+            for (let i = 0; i < customers.length; i++) {
+                temp += `<li>${customers[i].name},
+                    ${customers[i].carMakes},
+                    ${customers[i].carModel},
+                    ${customers[i].carColor}
+                    <button onclick='deleteCustomer(${i})'>Delete</button>
+                    <button onclick='update(${i})'>Update</button>
+                </li>`;
+            }
+            temp += "</ol>";
+            document.getElementById("display").innerHTML = temp;
+        }
+
+        display();
+
+        function save() {
+            customers.push({
+                name: CName.value,
+                carMakes: carMakes.value,
+                carModel: carModel.value,
+                carColor: carColor.value
+            });
+            localStorage.setItem("customers", JSON.stringify(customers));
+            display();
+            CName.value = '';
+            carMakes.value = '';
+            carModel.value = '';
+            carColor.value = '';
+        }
+
+        function deleteCustomer(ind) {
+            customers.splice(ind, 1);
+            localStorage.setItem("customers", JSON.stringify(customers));
+            display();
+        }
+
+        function update(i) {
+            let newName = prompt("Enter new name", customers[i].name);
+            let newCarMakes = prompt("Enter new car makes", customers[i].carMakes);
+            let newCarModel = prompt("Enter new car model", customers[i].carModel);
+            let newCarColor = prompt("Enter new car color", customers[i].carColor);
+
+            customers[i] = {
+                name: newName,
+                carMakes: newCarMakes,
+                carModel: newCarModel,
+                carColor: newCarColor
+            };
+            localStorage.setItem("customers", JSON.stringify(customers));
+            display();
+        }
+    </script>
+</body>
+
+</html>

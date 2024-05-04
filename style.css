@@ -1,0 +1,82 @@
+/* Resetting default margin for HTML */
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://images.squarespace-cdn.com/content/v1/5eb27a587f5c830881e05f1d/84ca8580-5ea6-4b2e-a524-316a5527670b/bilhotel+some+3.jpg?format=2500w");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensuring full viewport height */
+}
+
+header {
+    background-color: #413f3f;
+    color: #fcfafa;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+
+}
+#display,
+.input-field{
+    background-color: #c0f762;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+nav a {
+    color: #a5ef49;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.car {
+    background-color: #c0f762;
+    border: 1px solid #c7f879;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.car img {
+    max-width: 100%;
+    height: auto;
+}
+
+.car h2 {
+    margin-top: 0;
+}
+
+.input-field {
+    background-color: #c0f762;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
